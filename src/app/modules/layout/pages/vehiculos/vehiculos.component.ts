@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VehiculosService,ObjectService, MarcasService } from 'src/app/services/services.index';
+import { VehiculosService,ObjectService, MarcasService, ConcesionarioService } from 'src/app/services/services.index';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {
   FormGroup,
@@ -33,6 +33,7 @@ export class VehiculosComponent implements OnInit {
     private modalService: NgbModal,
     private service: VehiculosService,
     private serviceMarcas: MarcasService,
+    private ServiceConcesionario: ConcesionarioService,
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private state: ObjectService,
@@ -96,7 +97,13 @@ export class VehiculosComponent implements OnInit {
     this.loading = true;
     this.service.AllXId(pkey).then(data => {
       this.mForma.setValue({
-         Nombre: data[0].Nombre,
+         Modelo: data[0].Modelo,
+         Precio: data[0].Precio,
+         Color: data[0].Color,
+         Tipo: data[0].Tipo,
+         Traccion: data[0].Traccion,
+         TCMarcaId: data[0].Modelo,
+         TCConcesionarioId: data[0].Modelo,
         Estado: data[0].Estado
       });
       this.loading = false;
@@ -122,6 +129,7 @@ export class VehiculosComponent implements OnInit {
     this.loading = true;
     this.serviceMarcas.AllPage().then(data => {
       this.mMarcas = data;
+      console.log(this.mMarcas)
      this.loading = false;
     }).catch(error => {
       this.toastr.error(error.message, "Marcas");
@@ -132,7 +140,7 @@ export class VehiculosComponent implements OnInit {
 
   getAllConcesionarios() {
     this.loading = true;
-    this.serviceMarcas.AllPage().then(data => {
+    this.ServiceConcesionario.AllPage().then(data => {
       this.mConcesionarios = data;
      this.loading = false;
     }).catch(error => {
@@ -196,7 +204,6 @@ export class VehiculosComponent implements OnInit {
   eliminar(pKey: number) {
     this.loading = true;
     this.service.Delete(pKey).then(data => {
-      console.log(data)
       this.toastr.success(data.message, "Vehiculos");
         this.mVehiculos = this.mVehiculos.filter((object: IVehiculos) => object.id !== pKey);
       this.loading = false;

@@ -5,7 +5,9 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Nombre</th>
+            <th scope="col">Modelo</th>
+			<th scope="col">Precio</th>
+			<th scope="col">Tipo</th>
             <th scope="col">Estado</th>
             <th scope="col">Creado</th>
             <th scope="col">Acciones</th>
@@ -14,9 +16,11 @@
         <tbody>
           <tr *ngFor="let item of mVehiculos; let i = index">
             <th scope="row">{{i+1}}</th>
-            <!-- <td>{{item.Nombre }}</td>
+            <td>{{item.Modelo }}</td>
+			<td>{{item.Precio| number:'1.2-2' }}</td>
+			<td>{{item.Tipo }}</td>
 			<td>{{item.Estado}}</td>
-			<td>{{item.Created_At | date:'dd/MM/yy'}}</td> -->
+			<td>{{item.Created_At | date:'dd/MM/yy'}}</td>
             <td>
                 <a href="javascript:void(0)"  (click)="ver(content,item.id)" class="text-muted" >
                     <i title="Ver información" class="fa fa-eye"> Ver</i>
@@ -93,7 +97,7 @@
                 <div class="col">
 					<label for="Precio">Precio</label>
 					<input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.Precio.errors }"
-						formControlName="Modelo" placeholder="Precio" />
+						formControlName="Precio" placeholder="Precio" />
 					<div *ngIf="submitted && f.Precio.errors" type="alert" class="invalid-feedback">
 						<div *ngIf="f.Precio.errors?.required">
 							Precio es requerido</div>
@@ -104,7 +108,7 @@
                 <div class="col">
 					<label for="Color">Color</label>
 					<input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.Color.errors }"
-						formControlName="Modelo" placeholder="Color" />
+						formControlName="Color" placeholder="Color" />
 					<div *ngIf="submitted && f.Color.errors" type="alert" class="invalid-feedback">
 						<div *ngIf="f.Color.errors?.required">
 							Color es requerido</div>
@@ -113,7 +117,7 @@
                 <div class="col">
 					<label for="Tipo">Tipo</label>
 					<input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.Tipo.errors }"
-						formControlName="Modelo" placeholder="Tipo" />
+						formControlName="Tipo" placeholder="Tipo" />
 					<div *ngIf="submitted && f.Tipo.errors" type="alert" class="invalid-feedback">
 						<div *ngIf="f.Tipo.errors?.required">
 							Tipo es requerido</div>
@@ -138,7 +142,7 @@
 					<select class="form-control" name="Estado"
 						[ngClass]="{ 'is-invalid': submitted && f.TCConcesionarioId.errors }" formControlName="TCConcesionarioId">
 						<option value="null">-- seleccione --</option>
-						<option *ngFor="let x of mConcesionarios" [value]="x.id">{{x.Razon}}</option>
+						<option *ngFor="let x of mConcesionarios" [value]="x.id">{{x.Nombre}}</option>
 					</select>
 					<div *ngIf="submitted && f.TCConcesionarioId.errors" type="alert" class="invalid-feedback">
 						<div *ngIf="f.TCConcesionarioId.errors.required">

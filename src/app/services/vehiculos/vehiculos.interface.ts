@@ -1,5 +1,6 @@
 export interface IVehiculos {
     id: number;
+    Modelo:string;
     TCMarcaId:number;
     Precio:string;
     Color:string;
@@ -15,6 +16,7 @@ export class Vehiculos {
     static empy() {
       return {
           id: 0,
+          Modelo:'',
           TCMarcaId: 0,
           Precio: '',
           Color: '',
