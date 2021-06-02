@@ -1,4 +1,4 @@
-<!-- 
+
 <button type="button" data-toggle="modal" (click)="nuevo(content)" class="btn btn-primary btn-lg">Crear</button>
 <div class="mt-5">
     <table class="table">
@@ -68,7 +68,7 @@
 					<select class="form-control" name="Estado"
 						[ngClass]="{ 'is-invalid': submitted && f.TCMunicipioId.errors }" formControlName="TCMunicipioId">
 						<option value="null">-- seleccione --</option>
-						<option *ngFor="let x of mMunicipio" [value]="x.Nombre">{{x.Nombre}}</option>
+						<option *ngFor="let x of mMunicipios" [value]="x.id">{{x.Nombre}}</option>
 					</select>
 					<div *ngIf="submitted && f.TCMunicipioId.errors" type="alert" class="invalid-feedback">
 						<div *ngIf="f.TCMunicipioId.errors.required">
@@ -94,6 +94,13 @@
 					</div>
 				</div>
 				<div class="col">
+					<label for="Razon">Razon</label>
+					<input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.Razon.errors }"
+						formControlName="Razon" placeholder="Razon" />
+					<div *ngIf="submitted && f.Razon.errors" type="alert" class="invalid-feedback">
+						<div *ngIf="f.Razon.errors?.required">
+							Razon es requerido</div>
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -111,4 +118,4 @@
 		</div>
 	</form>
 </ng-template>
- -->
+

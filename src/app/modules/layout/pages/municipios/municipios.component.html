@@ -45,7 +45,7 @@
 <ng-template #content let-modal #customLoadingTemplate>
 	<form [formGroup]="mForma" (ngSubmit)="onSubmit()" >
 		<div class="modal-header">
-			<h4 class="modal-title" id="modal-basic-title">Marcas</h4>
+			<h4 class="modal-title" id="modal-basic-title">Municipios</h4>
 			<button type="button" class="close" aria-label="Close" (click)="modal.dismiss()"></button>
 			<span aria-hidden="true">&times;</span>
 		</div>
@@ -67,7 +67,7 @@
 					<select class="form-control" name="Estado"
 						[ngClass]="{ 'is-invalid': submitted && f.TCDepartamentoId.errors }" formControlName="TCDepartamentoId">
 						<option value="null">-- seleccione --</option>
-						<option *ngFor="let x of mDepartamentos" [value]="x.Nombre">{{x.id}}</option>
+						<option *ngFor="let x of mDepartamentos" [value]="x.id">{{x.Nombre}}</option>
 					</select>
 					<div *ngIf="submitted && f.TCDepartamentoId.errors" type="alert" class="invalid-feedback">
 						<div *ngIf="f.TCDepartamentoId.errors.required">

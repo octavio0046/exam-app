@@ -58,6 +58,7 @@ export class MunicipiosComponent implements OnInit {
     return this.formBuilder.group({
       Nombre: ['', Validators.required],
       Estado:  ['', Validators.required],
+      TCDepartamentoId:  ['', Validators.required],
     });
   }
 
@@ -175,7 +176,6 @@ export class MunicipiosComponent implements OnInit {
   eliminar(pKey: number) {
     this.loading = true;
     this.service.Delete(pKey).then(data => {
-      console.log(data)
       this.toastr.success(data.message, "Municipios");
         this.mMunicipios = this.mMunicipios.filter((object: IMunicipios) => object.id !== pKey);
       this.loading = false;

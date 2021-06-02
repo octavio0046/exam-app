@@ -21,12 +21,10 @@ export class DepartamentosService {
 
 
   async AllPage() {
-    console.log("ruta",this.mUrl + this.mService)
     return await this.httpClient.get(this.mUrl + this.mService, {
       headers: getHeaders()
     }).pipe(
       map((data: any) => {
-        console.log("resp",data)
         return data;
       })).toPromise();
   }
@@ -34,7 +32,6 @@ export class DepartamentosService {
 
   async New(pDatos: any) {
     const lDatos = JSON.stringify(pDatos);
-    console.log("ldatos",lDatos)
     return await this.httpClient.post(this.mUrl + this.mService, lDatos, {
       headers: getHeaders()
     }).pipe(

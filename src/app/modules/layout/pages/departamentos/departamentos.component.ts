@@ -158,7 +158,6 @@ export class DepartamentosComponent implements OnInit {
   eliminar(pKey: number) {
     this.loading = true;
     this.service.Delete(pKey).then(data => {
-      console.log(data)
       this.toastr.success(data.message, " Departamentos");
         this.mDepartamentos = this.mDepartamentos.filter((object: IDepartamentos) => object.id !== pKey);
       this.loading = false;

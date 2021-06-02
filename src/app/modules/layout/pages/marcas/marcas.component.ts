@@ -158,7 +158,6 @@ export class MarcasComponent implements OnInit {
   eliminar(pKey: number) {
     this.loading = true;
     this.service.Delete(pKey).then(data => {
-      console.log(data)
       this.toastr.success(data.message, "Marcas");
         this.mMarcas = this.mMarcas.filter((object: IMarcas) => object.id !== pKey);
       this.loading = false;

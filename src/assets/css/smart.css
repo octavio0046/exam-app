@@ -378,24 +378,9 @@
 .icono-user::before,
 .icono-carrito::before,
 .icono-movil::before,
-.icono-correo::before {
-    content: url("../img/user.svg");
-    width: 25px;
-    height: 25px;
-    display: block;
-    position: absolute;
-    top: 12px;
-    right: 0;
-    z-index: 2000;
-    margin-right: 55px;
-}
 
-.icono-carrito::before {
-    content: url("../img/carrito.svg");
-    right: 30px;
-    margin-right: 70px;
-    cursor: pointer;
-}
+
+
 
 .icono-carrito .contenedor-carrito-smart {
     background-color: var(--bg-smart-two);
@@ -422,17 +407,7 @@
     color: var(--color-smart-one);
 }
 
-.icono-movil::before {
-    content: url("../img/movil.svg");
-    right: 60px;
-    margin-right: 85px;
-}
 
-.icono-correo::before {
-    content: url("../img/correo.svg");
-    right: 90px;
-    margin-right: 100px;
-}
 
 .contenedor-principal-smart::-webkit-scrollbar {
     width: 8px;
