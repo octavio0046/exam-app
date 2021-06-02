@@ -8,6 +8,8 @@ import { LayoutComponent } from './modules/layout/pages/layout/layout.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxLoadingModule } from 'ngx-loading';
+import { NgbModule, NgbActiveModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,9 +22,13 @@ import { NgxLoadingModule } from 'ngx-loading';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
+    NgbModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+ 
+  ],
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

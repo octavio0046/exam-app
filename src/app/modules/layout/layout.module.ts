@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServicesModule } from 'src/app/services/services.module';
 import { NgxLoadingModule } from 'ngx-loading';
 import { MarcasComponent } from './pages/marcas/marcas.component';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -19,7 +20,11 @@ import { MarcasComponent } from './pages/marcas/marcas.component';
     ServicesModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxLoadingModule.forRoot({})
-  ]
+    NgxLoadingModule.forRoot({}),
+  ],
+  providers: [
+
+  ],
+  
 })
 export class LayoutModule { }

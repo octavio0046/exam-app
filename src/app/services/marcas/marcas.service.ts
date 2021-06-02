@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { getHeaders } from '../CF/misc/headers';
 import { map } from 'rxjs/operators';
 import { ServicesModule } from '../services.module';
+import { IMarcas } from './marcas.interface';
 
 @Injectable({
   providedIn: ServicesModule
@@ -31,24 +32,15 @@ export class MarcasService {
   }
 
 
+  async New(pDatos: IMarcas) {
+    const lDatos = JSON.stringify(pDatos);
+    return await this.httpClient.post(this.mUrl + this.mService, lDatos, {
+      headers: getHeaders()
+    }).pipe(
+      map((data: any) => {
+        return data;
+      })).toPromise();
+  }
 
-  // async New(pDatos: any) {
-  //   const lDatos = JSON.stringify(pDatos);
-  //   return await this.httpClient.post(this.mUrl + this.mService+'/Contactanos', lDatos, {
-  //     headers: getHeaders()
-  //   }).pipe(
-  //     map((data: any) => {
-  //       return data;
-  //     })).toPromise();
-  // }
 
-  // async NewSuscription(pDatos: any) {
-  //   const lDatos = JSON.stringify(pDatos);
-  //   return await this.httpClient.post(this.mUrl + this.mService+'/Subscribete ', lDatos, {
-  //     headers: getHeaders()
-  //   }).pipe(
-  //     map((data: any) => {
-  //       return data;
-  //     })).toPromise();
-  // }
 }
