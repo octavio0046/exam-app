@@ -1,1 +1,96 @@
-<p>departamentos works!</p>
+
+<button type="button" data-toggle="modal" (click)="nuevo(content)" class="btn btn-primary btn-lg">Crear</button>
+<div class="mt-5">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Creado</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of mDepartamentos; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>
+                <a href="javascript:void(0)"  class="text-muted" >
+                    <i title="Ver información" class="fa fa-eye"> Ver</i>
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)"
+                    class="text-muted">
+                    <i title="Modificar" class="fa fa-pencil">Actualizar</i>
+                </a>
+            </td>
+
+            <td>
+                <a href="javascript:void(0)" class="text-muted">
+                    <i title="Eliminar" class="fa fa-trash"> Eliminar</i>
+                </a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+</div>
+
+
+
+<ng-template #content let-modal #customLoadingTemplate>
+	<form [formGroup]="mForma" (ngSubmit)="onSubmit()" >
+		<div class="modal-header">
+			<h4 class="modal-title" id="modal-basic-title">Departamentos</h4>
+			<button type="button" class="close" aria-label="Close" (click)="modal.dismiss()"></button>
+			<span aria-hidden="true">&times;</span>
+		</div>
+		<div class="modal-body">
+			<div class="row">
+
+        <div class="col">
+					<label for="Nombre">Nombres</label>
+					<input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.Nombre.errors }"
+						formControlName="Nombre" placeholder="David" />
+					<div *ngIf="submitted && f.Nombre.errors" type="alert" class="invalid-feedback">
+						<div *ngIf="f.Nombre.errors?.required">
+							Nombre es requerido</div>
+					</div>
+				</div>
+        <div class="col">
+					<label for="Estado">Estado</label>
+					<select class="form-control" name="Estado"
+						[ngClass]="{ 'is-invalid': submitted && f.Estado.errors }" formControlName="Estado">
+						<option value="null">-- seleccione --</option>
+						<option *ngFor="let x of mEstado" [value]="x.Nombre">{{x.Nombre}}</option>
+					</select>
+					<div *ngIf="submitted && f.Estado.errors" type="alert" class="invalid-feedback">
+						<div *ngIf="f.Estado.errors.required">
+							Estado es Requerido</div>
+					</div>
+				</div>
+        
+			</div>
+			<div class="row">
+	
+			</div>
+			<div class="row">
+		
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<button *ngIf="mFormaEstado === '1' || mFormaEstado === '3' " style="margin: 5px"
+				class="btn btn-outline-primary">
+				<i class="fa fa-save"></i>
+				<span *ngIf="mFormaEstado === '1'">Crear</span>
+				<span *ngIf="mFormaEstado ==='3'"> Actualizar</span>
+			</button>
+		</div>
+	</form>
+</ng-template>
+

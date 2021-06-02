@@ -25,6 +25,7 @@ export class MarcasComponent implements OnInit {
   mMarcasSelect: IMarcas;
   mFormaEstado: string;
   public loading = false;
+  Pkey: number;
   constructor(
     private modalService: NgbModal,
     private service: MarcasService,
@@ -37,6 +38,7 @@ export class MarcasComponent implements OnInit {
     this.mMarcasSelect = Marcas.empy();
     this.mFormaEstado = '4';
     this.mEstado = this.state.Estados();
+    this.Pkey=0;
   }
 
   ngOnInit(): void {
@@ -58,13 +60,42 @@ export class MarcasComponent implements OnInit {
     this.modalService.open(content, { size: 'lg' });
     this.mFormaEstado ="1";
   }
+  ver(content: any, pkey: number) {
+    this.getXId(pkey);
+    this.modalService.open(content, { size: 'lg',centered: true  });
+    this.mFormaEstado = '2';
+    this.mForma.disable();
+  }
 
+
+  
+  modificar(content: any, pkey: number) {
+    this.Pkey = pkey;
+    this.mForma.enable();
+    this.getXId(this.Pkey);
+    this.modalService.open(content, { size: 'lg',centered: true  });
+    this.mFormaEstado = '3';
+  }
+
+
+  getXId(pkey:number) {
+    this.loading = true;
+    this.service.AllXId(pkey).then(data => {
+      this.mForma.setValue({
+         Nombre: data[0].Nombre,
+        Estado: data[0].Estado
+      });
+      this.loading = false;
+    }).catch((error: { message: string | undefined; }) => {
+      this.loading = false;
+      this.toastr.error(error.message, "Marcas");
+    });
+  }
 
   getAll() {
     this.loading = true;
     this.service.AllPage().then(data => {
       this.mMarcas = data;
-      console.log("marcas",this.mMarcas)
      this.loading = false;
     }).catch(error => {
       this.toastr.error(error.message, "Marcas");
@@ -82,7 +113,7 @@ export class MarcasComponent implements OnInit {
       if (this.mFormaEstado === '1') {
         this.guardar();
       } else if (this.mFormaEstado === '3') {
-    //    this.actualizar(this.Pkey);
+        this.actualizar(this.Pkey);
       }
     }
   }
@@ -93,7 +124,7 @@ export class MarcasComponent implements OnInit {
     this.service.New(this.mMarcasSelect).then(data => {
       this.toastr.success(data.message, "Marcas");
       this.mFormaEstado = '4';
-      this.mMarcas.unshift(data.response);
+      this.mMarcas.unshift(data);
       this.loading = false;
    //   this.modalRef.close();
    this.getDismissReason('');
@@ -103,6 +134,39 @@ export class MarcasComponent implements OnInit {
     });
   }
 
+  actualizar(pKey: number) {
+    this.loading = true;
+    this.service.Update(this.mMarcasSelect, pKey).then(data => {
+      this.toastr.success(data.message, "Marcas");
+      this.getDismissReason('');
+      this.mMarcas = this.mMarcas.map((object: IMarcas) => {
+        if (object.id === pKey) {
+          return object = data;
+        } else {
+          return object;
+        }
+      });
+
+      this.loading = false;
+    }).catch(error => {
+      this.loading = false;
+      this.toastr.error(error.message, "Marcas");
+    });
+  }
+
+  
+  eliminar(pKey: number) {
+    this.loading = true;
+    this.service.Delete(pKey).then(data => {
+      console.log(data)
+      this.toastr.success(data.message, "Marcas");
+        this.mMarcas = this.mMarcas.filter((object: IMarcas) => object.id !== pKey);
+      this.loading = false;
+    }).catch(error => {
+      this.loading = false;
+      this.toastr.error(error.message, "Marcas");
+    });
+  }
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
