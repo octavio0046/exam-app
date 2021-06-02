@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MarcasService,ObjectService,DepartamentosService } from 'src/app/services/services.index';
+import {  DepartamentosService,ObjectService } from 'src/app/services/services.index';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {
   FormGroup,
@@ -9,9 +9,8 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import {
   IEstados,
-  IDepartamentos,Departamentos
+  IDepartamentos, Departamentos
 } from 'src/app/services/interface.index';
-
 
 @Component({
   selector: 'app-departamentos',
@@ -26,18 +25,20 @@ export class DepartamentosComponent implements OnInit {
   mDepartamentosSelect: IDepartamentos;
   mFormaEstado: string;
   public loading = false;
+  Pkey: number;
   constructor(
     private modalService: NgbModal,
-    private service: DepartamentosService,
+    private service:  DepartamentosService,
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private state: ObjectService,
   ) { 
     this.mForma = this.generarFormulario();
     this.mDepartamentos=[];
-    this.mDepartamentosSelect = Departamentos.empy();
+    this.mDepartamentosSelect =  Departamentos.empy();
     this.mFormaEstado = '4';
     this.mEstado = this.state.Estados();
+    this.Pkey=0;
   }
 
   ngOnInit(): void {
@@ -59,16 +60,45 @@ export class DepartamentosComponent implements OnInit {
     this.modalService.open(content, { size: 'lg' });
     this.mFormaEstado ="1";
   }
+  ver(content: any, pkey: number) {
+    this.getXId(pkey);
+    this.modalService.open(content, { size: 'lg',centered: true  });
+    this.mFormaEstado = '2';
+    this.mForma.disable();
+  }
 
+
+  
+  modificar(content: any, pkey: number) {
+    this.Pkey = pkey;
+    this.mForma.enable();
+    this.getXId(this.Pkey);
+    this.modalService.open(content, { size: 'lg',centered: true  });
+    this.mFormaEstado = '3';
+  }
+
+
+  getXId(pkey:number) {
+    this.loading = true;
+    this.service.AllXId(pkey).then(data => {
+      this.mForma.setValue({
+         Nombre: data[0].Nombre,
+        Estado: data[0].Estado
+      });
+      this.loading = false;
+    }).catch((error: { message: string | undefined; }) => {
+      this.loading = false;
+      this.toastr.error(error.message, " Departamentos");
+    });
+  }
 
   getAll() {
     this.loading = true;
     this.service.AllPage().then(data => {
       this.mDepartamentos = data;
-      console.log("marcas",this.mDepartamentos)
      this.loading = false;
     }).catch(error => {
-      this.toastr.error(error.message, "Departametnos");
+      this.toastr.error(error.message, " Departamentos");
       this.loading = false;
     });
   }
@@ -83,7 +113,7 @@ export class DepartamentosComponent implements OnInit {
       if (this.mFormaEstado === '1') {
         this.guardar();
       } else if (this.mFormaEstado === '3') {
-    //    this.actualizar(this.Pkey);
+        this.actualizar(this.Pkey);
       }
     }
   }
@@ -92,18 +122,51 @@ export class DepartamentosComponent implements OnInit {
   guardar() {
     this.loading = true;
     this.service.New(this.mDepartamentosSelect).then(data => {
-      this.toastr.success(data.message, "Departamentos");
+      this.toastr.success(data.message, " Departamentos");
       this.mFormaEstado = '4';
-      this.mDepartamentos.unshift(data.response);
+      this.mDepartamentos.unshift(data);
       this.loading = false;
    //   this.modalRef.close();
    this.getDismissReason('');
     }).catch(error => {
       this.loading = false;
-      this.toastr.error(error.message, "Departamentos");
+      this.toastr.error(error.message, " Departamentos");
     });
   }
 
+  actualizar(pKey: number) {
+    this.loading = true;
+    this.service.Update(this.mDepartamentosSelect, pKey).then(data => {
+      this.toastr.success(data.message, " Departamentos");
+      this.getDismissReason('');
+      this.mDepartamentos = this.mDepartamentos.map((object: IDepartamentos) => {
+        if (object.id === pKey) {
+          return object = data;
+        } else {
+          return object;
+        }
+      });
+
+      this.loading = false;
+    }).catch((error: { message: string | undefined; }) => {
+      this.loading = false;
+      this.toastr.error(error.message, " Departamentos");
+    });
+  }
+
+  
+  eliminar(pKey: number) {
+    this.loading = true;
+    this.service.Delete(pKey).then(data => {
+      console.log(data)
+      this.toastr.success(data.message, " Departamentos");
+        this.mDepartamentos = this.mDepartamentos.filter((object: IDepartamentos) => object.id !== pKey);
+      this.loading = false;
+    }).catch(error => {
+      this.loading = false;
+      this.toastr.error(error.message, " Departamentos");
+    });
+  }
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

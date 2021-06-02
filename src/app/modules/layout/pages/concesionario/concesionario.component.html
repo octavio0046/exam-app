@@ -1,4 +1,4 @@
-
+<!-- 
 <button type="button" data-toggle="modal" (click)="nuevo(content)" class="btn btn-primary btn-lg">Crear</button>
 <div class="mt-5">
     <table class="table">
@@ -12,25 +12,25 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of mConcesionarios; let i = index">
+          <tr *ngFor="let item of mConcesionario; let i = index">
             <th scope="row">{{i+1}}</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <td>{{item.Nombre }}</td>
+			<td>{{item.Estado}}</td>
+			<td>{{item.Created_At | date:'dd/MM/yy'}}</td>
             <td>
-                <a href="javascript:void(0)"  class="text-muted" >
+                <a href="javascript:void(0)"  (click)="ver(content,item.id)" class="text-muted" >
                     <i title="Ver información" class="fa fa-eye"> Ver</i>
                 </a>
             </td>
             <td>
                 <a href="javascript:void(0)"
                     class="text-muted">
-                    <i title="Modificar" class="fa fa-pencil">Actualizar</i>
+                    <i title="Modificar" (click)="modificar(content, item.id)"  class="fa fa-pencil">Actualizar</i>
                 </a>
             </td>
 
             <td>
-                <a href="javascript:void(0)" class="text-muted">
+                <a href="javascript:void(0)"  (click)="eliminar( item.id)" class="text-muted">
                     <i title="Eliminar" class="fa fa-trash"> Eliminar</i>
                 </a>
             </td>
@@ -53,15 +53,16 @@
 			<div class="row">
 
         <div class="col">
-					<label for="Nombre">Razon</label>
-					<input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.Razon.errors }"
-						formControlName="Razon" placeholder="David" />
-					<div *ngIf="submitted && f.Razon.errors" type="alert" class="invalid-feedback">
-						<div *ngIf="f.Razon.errors?.required">
-							Razon es requerido</div>
+					<label for="Nombre">Nombre</label>
+					<input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.Nombre.errors }"
+						formControlName="Nombre" placeholder="David" />
+					<div *ngIf="submitted && f.Nombre.errors" type="alert" class="invalid-feedback">
+						<div *ngIf="f.Nombre.errors?.required">
+							Nombre es requerido</div>
 					</div>
 				</div>
 
+				
 				<div class="col">
 					<label for="TCMunicipioId">Municipios</label>
 					<select class="form-control" name="Estado"
@@ -75,6 +76,8 @@
 					</div>
 				</div>
      
+
+         
         
 			</div>
 			<div class="row">
@@ -90,10 +93,7 @@
 							Estado es Requerido</div>
 					</div>
 				</div>
-
-
 				<div class="col">
-			
 				</div>
 			</div>
 			<div class="row">
@@ -111,4 +111,4 @@
 		</div>
 	</form>
 </ng-template>
-
+ -->

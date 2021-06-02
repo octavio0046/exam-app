@@ -1,14 +1,3 @@
-// import { Injectable } from '@angular/core';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class MunicipiosService {
-
-//   constructor() { }
-// }
-
-
 import { Injectable } from '@angular/core';
 //import { ConfigService } from '../CF/config/config.service';
 import { HttpClient } from '@angular/common/http';
@@ -32,11 +21,12 @@ export class MunicipiosService {
 
 
   async AllPage() {
-    console.log(this.mUrl + this.mService)
+    console.log("ruta",this.mUrl + this.mService)
     return await this.httpClient.get(this.mUrl + this.mService, {
       headers: getHeaders()
     }).pipe(
       map((data: any) => {
+        console.log("resp",data)
         return data;
       })).toPromise();
   }
@@ -53,5 +43,34 @@ export class MunicipiosService {
       })).toPromise();
   }
 
+
+
+  async AllXId(pKey: any) {
+    return await this.httpClient.get(this.mUrl + this.mService + '/' + pKey, {
+      headers: getHeaders()
+    }).pipe(
+      map((data: any) => {
+        return data;
+      })).toPromise();
+  }
+
+
+  async Update(pObj: any, pKey: number) {
+    const jObj = JSON.stringify(pObj);
+    return await this.httpClient.put(this.mUrl + this.mService + '/' + pKey, jObj,
+      { headers: getHeaders() })
+      // tslint:disable-next-line: arrow-return-shorthand
+      .pipe(map((data: any) => { return data; }))
+      .toPromise();
+  }
+
+
+  async Delete(pKey: number) {
+    return await this.httpClient.delete(this.mUrl + this.mService + '/' + pKey,
+      { headers: getHeaders() }).pipe(
+        map((data: any) => {
+          return data;
+        })).toPromise();
+  }
 
 }
