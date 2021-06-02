@@ -1,1 +1,172 @@
-<p>vehiculos works!</p>
+
+<button type="button" data-toggle="modal" (click)="nuevo(content)" class="btn btn-primary btn-lg">Crear</button>
+<div class="mt-5">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Creado</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of mVehiculos; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <!-- <td>{{item.Nombre }}</td>
+			<td>{{item.Estado}}</td>
+			<td>{{item.Created_At | date:'dd/MM/yy'}}</td> -->
+            <td>
+                <a href="javascript:void(0)"  (click)="ver(content,item.id)" class="text-muted" >
+                    <i title="Ver información" class="fa fa-eye"> Ver</i>
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)"
+                    class="text-muted">
+                    <i title="Modificar" (click)="modificar(content, item.id)"  class="fa fa-pencil">Actualizar</i>
+                </a>
+            </td>
+
+            <td>
+                <a href="javascript:void(0)"  (click)="eliminar( item.id)" class="text-muted">
+                    <i title="Eliminar" class="fa fa-trash"> Eliminar</i>
+                </a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+</div>
+
+
+
+<ng-template #content let-modal #customLoadingTemplate>
+	<form [formGroup]="mForma" (ngSubmit)="onSubmit()" >
+		<div class="modal-header">
+			<h4 class="modal-title" id="modal-basic-title">Marcas</h4>
+			<button type="button" class="close" aria-label="Close" (click)="modal.dismiss()"></button>
+			<span aria-hidden="true">&times;</span>
+		</div>
+		<div class="modal-body">
+			<div class="row">
+
+        <div class="col">
+					<label for="Modelo">Modelo</label>
+					<input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.Modelo.errors }"
+						formControlName="Modelo" placeholder="Modelo" />
+					<div *ngIf="submitted && f.Modelo.errors" type="alert" class="invalid-feedback">
+						<div *ngIf="f.Modelo.errors?.required">
+							Modelo es requerido</div>
+					</div>
+				</div>
+
+				<div class="col">
+					<label for="TCMarcaId">Marcas</label>
+					<select class="form-control" name="Estado"
+						[ngClass]="{ 'is-invalid': submitted && f.TCMarcaId.errors }" formControlName="TCMarcaId">
+						<option value="null">-- seleccione --</option>
+						<option *ngFor="let x of mMarcas" [value]="x.id">{{x.Nombre}}</option>
+					</select>
+					<div *ngIf="submitted && f.TCMarcaId.errors" type="alert" class="invalid-feedback">
+						<div *ngIf="f.TCMarcaId.errors.required">
+							Marcas es Requerido</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col">
+					<label for="Estado">Estado</label>
+					<select class="form-control" name="Estado"
+						[ngClass]="{ 'is-invalid': submitted && f.Estado.errors }" formControlName="Estado">
+						<option value="null">-- seleccione --</option>
+						<option *ngFor="let x of mEstado" [value]="x.Nombre">{{x.Nombre}}</option>
+					</select>
+					<div *ngIf="submitted && f.Estado.errors" type="alert" class="invalid-feedback">
+						<div *ngIf="f.Estado.errors.required">
+							Estado es Requerido</div>
+					</div>
+				</div>
+
+                <div class="col">
+					<label for="Precio">Precio</label>
+					<input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.Precio.errors }"
+						formControlName="Modelo" placeholder="Precio" />
+					<div *ngIf="submitted && f.Precio.errors" type="alert" class="invalid-feedback">
+						<div *ngIf="f.Precio.errors?.required">
+							Precio es requerido</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+                <div class="col">
+					<label for="Color">Color</label>
+					<input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.Color.errors }"
+						formControlName="Modelo" placeholder="Color" />
+					<div *ngIf="submitted && f.Color.errors" type="alert" class="invalid-feedback">
+						<div *ngIf="f.Color.errors?.required">
+							Color es requerido</div>
+					</div>
+				</div>
+                <div class="col">
+					<label for="Tipo">Tipo</label>
+					<input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.Tipo.errors }"
+						formControlName="Modelo" placeholder="Tipo" />
+					<div *ngIf="submitted && f.Tipo.errors" type="alert" class="invalid-feedback">
+						<div *ngIf="f.Tipo.errors?.required">
+							Tipo es requerido</div>
+					</div>
+				</div>
+			</div>
+
+            <div class="row">
+                <div class="col">
+					<label for="Traccion">Traccion</label>
+					<input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.Traccion.errors }"
+						formControlName="Traccion" placeholder="Traccion" />
+					<div *ngIf="submitted && f.Traccion.errors" type="alert" class="invalid-feedback">
+						<div *ngIf="f.Traccion.errors?.required">
+							Traccion es requerido</div>
+					</div>
+				</div>
+
+
+                <div class="col">
+					<label for="TCConcesionarioId">Concesionario</label>
+					<select class="form-control" name="Estado"
+						[ngClass]="{ 'is-invalid': submitted && f.TCConcesionarioId.errors }" formControlName="TCConcesionarioId">
+						<option value="null">-- seleccione --</option>
+						<option *ngFor="let x of mConcesionarios" [value]="x.id">{{x.Razon}}</option>
+					</select>
+					<div *ngIf="submitted && f.TCConcesionarioId.errors" type="alert" class="invalid-feedback">
+						<div *ngIf="f.TCConcesionarioId.errors.required">
+							Concesionario es Requerido</div>
+					</div>
+				</div>
+			</div>
+
+
+            
+
+            <div class="row">
+		
+			</div>
+
+            <div class="row">
+		
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<button *ngIf="mFormaEstado === '1' || mFormaEstado === '3' " style="margin: 5px"
+				class="btn btn-outline-primary">
+				<i class="fa fa-save"></i>
+				<span *ngIf="mFormaEstado === '1'">Crear</span>
+				<span *ngIf="mFormaEstado ==='3'"> Actualizar</span>
+			</button>
+		</div>
+	</form>
+</ng-template>
+
