@@ -34,6 +34,7 @@ export class MarcasService {
 
   async New(pDatos: IMarcas) {
     const lDatos = JSON.stringify(pDatos);
+    console.log("ldatos",lDatos)
     return await this.httpClient.post(this.mUrl + this.mService, lDatos, {
       headers: getHeaders()
     }).pipe(

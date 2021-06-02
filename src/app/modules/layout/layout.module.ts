@@ -7,11 +7,27 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServicesModule } from 'src/app/services/services.module';
 import { NgxLoadingModule } from 'ngx-loading';
 import { MarcasComponent } from './pages/marcas/marcas.component';
+import { VehiculosComponent } from './pages/vehiculos/vehiculos.component';
+import { ClientesComponent } from './pages/clientes/clientes.component';
+import { DepartamentosComponent } from './pages/departamentos/departamentos.component';
+import { CotizacionesComponent } from './pages/cotizaciones/cotizaciones.component';
+import { ConcesionarioComponent } from './pages/concesionario/concesionario.component';
+import { DetallecotizacionesComponent } from './pages/detallecotizaciones/detallecotizaciones.component';
+import { AgentesComponent } from './pages/agentes/agentes.component';
+import { MunicipiosComponent } from './pages/municipios/municipios.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    MarcasComponent
+    MarcasComponent,
+    VehiculosComponent,
+    ClientesComponent,
+    DepartamentosComponent,
+    CotizacionesComponent,
+    ConcesionarioComponent,
+    DetallecotizacionesComponent,
+    AgentesComponent,
+    MunicipiosComponent
   ],
   imports: [
     CommonModule,

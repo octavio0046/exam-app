@@ -25,7 +25,6 @@ export class MarcasComponent implements OnInit {
   mMarcasSelect: IMarcas;
   mFormaEstado: string;
   public loading = false;
-  TitleCRUD: string;
   constructor(
     private modalService: NgbModal,
     private service: MarcasService,
@@ -38,7 +37,6 @@ export class MarcasComponent implements OnInit {
     this.mMarcasSelect = Marcas.empy();
     this.mFormaEstado = '4';
     this.mEstado = this.state.Estados();
-    this.TitleCRUD='Crear';
   }
 
   ngOnInit(): void {
@@ -57,7 +55,6 @@ export class MarcasComponent implements OnInit {
   }
 
   nuevo(content: any) {
-    this.TitleCRUD='Crear';
     this.modalService.open(content, { size: 'lg' });
     this.mFormaEstado ="1";
   }
