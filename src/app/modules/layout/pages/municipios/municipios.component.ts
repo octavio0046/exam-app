@@ -89,7 +89,8 @@ export class MunicipiosComponent implements OnInit {
     this.service.AllXId(pkey).then(data => {
       this.mForma.setValue({
          Nombre: data[0].Nombre,
-        Estado: data[0].Estado
+        Estado: data[0].Estado,
+        TCDepartamentoId:data[0].TCDepartamentoId,
       });
       this.loading = false;
     }).catch((error: { message: string | undefined; }) => {

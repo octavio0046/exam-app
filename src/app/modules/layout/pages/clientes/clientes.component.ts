@@ -99,7 +99,7 @@ export class ClientesComponent implements OnInit {
          EstadoCivil: data[0].EstadoCivil,
          Escolaridad: data[0].Escolaridad,
         Estado: data[0].Estado,
-        TCMunicipioId: data[0].Estado
+        TCMunicipioId: data[0].TCMunicipioId
       });
       this.loading = false;
     }).catch((error: { message: string | undefined; }) => {
