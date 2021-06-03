@@ -20,6 +20,11 @@
                 <td>{{item.Vencimiento | date:'dd/MM/yy'}}</td>
 		    	<td>{{item.Estado}}</td>
 			   <td>{{item.Created_At | date:'dd/MM/yy'}}</td>
+               <td>
+                <a href="javascript:void(0)"  (click)="detalle(item.id)" class="text-muted">
+                    <i title="Detalle" class="fa fa-eye"> Detalle</i>
+                </a>
+               </td>
                 <td>
                     <a href="javascript:void(0)" (click)="ver(content,item.id)" class="text-muted">
                         <i title="Ver información" class="fa fa-eye"> Ver</i>

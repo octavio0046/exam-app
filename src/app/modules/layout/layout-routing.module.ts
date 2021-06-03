@@ -40,6 +40,9 @@ const routes: Routes = [{
   },
   {
     path: 'municipios', component: MunicipiosComponent
+  },
+  {
+    path: 'detalle/:id', component: DetallecotizacionesComponent
   }
 ]
 }];

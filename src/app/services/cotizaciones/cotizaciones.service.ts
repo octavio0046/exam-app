@@ -33,7 +33,6 @@ export class CotizacionesService {
 
   async New(pDatos: any) {
     const lDatos = JSON.stringify(pDatos);
-console.log(lDatos)
     return await this.httpClient.post(this.mUrl + this.mService, lDatos, {
       headers: getHeaders()
     }).pipe(

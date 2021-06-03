@@ -1,1 +1,110 @@
-<p>detallecotizaciones works!</p>
+
+<button type="button" data-toggle="modal" (click)="nuevo(content)" class="btn btn-primary btn-lg">Crear</button>
+<div class="mt-5">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Vehiculo</th>
+            <th scope="col">Estado</th>
+			<th scope="col">Descripcion</th>
+            <th scope="col">Creado</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of mDetalles; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.Modelo }}  {{item.Tipo }} {{item.Traccion }} {{item.Precio| number:'1.2-2' }} {{item.Color }} </td>
+			<td>{{item.Estado}}</td>
+			<td>{{item.Descripcion}}</td>
+			<td>{{item.Created_At | date:'dd/MM/yy'}}</td>
+            <td>
+                <a href="javascript:void(0)"  (click)="ver(content,item.iddeta)" class="text-muted" >
+                    <i title="Ver información" class="fa fa-eye"> Ver</i>
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)"
+                    class="text-muted">
+                    <i title="Modificar" (click)="modificar(content, item.iddeta)"  class="fa fa-pencil">Actualizar</i>
+                </a>
+            </td>
+
+            <td>
+                <a href="javascript:void(0)"  (click)="eliminar( item.iddeta)" class="text-muted">
+                    <i title="Eliminar" class="fa fa-trash"> Eliminar</i>
+                </a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+</div>
+
+
+
+<ng-template #content let-modal #customLoadingTemplate>
+	<form [formGroup]="mForma" (ngSubmit)="onSubmit()" >
+		<div class="modal-header">
+			<h4 class="modal-title" id="modal-basic-title">Marcas</h4>
+			<button type="button" class="close" aria-label="Close" (click)="modal.dismiss()"></button>
+			<span aria-hidden="true">&times;</span>
+		</div>
+		<div class="modal-body">
+			<div class="row">
+
+        <div class="col">
+					<label for="Descripcion">Descripcion</label>
+					<textarea class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.Descripcion.errors }"
+						formControlName="Descripcion" placeholder="David" >
+                     </textarea>
+					<div *ngIf="submitted && f.Descripcion.errors" type="alert" class="invalid-feedback">
+						<div *ngIf="f.Descripcion.errors?.required">
+							Descripcion es requerido</div>
+					</div>
+				</div>
+               <div class="col">
+					<label for="Estado">Estado</label>
+					<select class="form-control" name="Estado"
+						[ngClass]="{ 'is-invalid': submitted && f.Estado.errors }" formControlName="Estado">
+						<option value="null">-- seleccione --</option>
+						<option *ngFor="let x of mEstado" [value]="x.Nombre">{{x.Nombre}}</option>
+					</select>
+					<div *ngIf="submitted && f.Estado.errors" type="alert" class="invalid-feedback">
+						<div *ngIf="f.Estado.errors.required">
+							Estado es Requerido</div>
+					</div>
+				</div>
+        
+			</div>
+			<div class="row">
+                <div class="col">
+					<label for="TCVehiculoId">Vehiculo</label>
+					<select class="form-control" name="Estado"
+						[ngClass]="{ 'is-invalid': submitted && f.TCVehiculoId.errors }" formControlName="TCVehiculoId">
+						<option value="null">-- seleccione --</option>
+						<option *ngFor="let x of mVehiculos" [value]="x.id">{{x.Modelo}} / {{x.Precio| number:'1.2-2'}} / {{x.Color}} / {{x.Traccion}} /{{x.Tipo}}</option>
+					</select>
+					<div *ngIf="submitted && f.TCVehiculoId.errors" type="alert" class="invalid-feedback">
+						<div *ngIf="f.TCVehiculoId.errors.required">
+							Vehiculo es Requerido</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+		
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<button *ngIf="mFormaEstado === '1' || mFormaEstado === '3' " style="margin: 5px"
+				class="btn btn-outline-primary">
+				<i class="fa fa-save"></i>
+				<span *ngIf="mFormaEstado === '1'">Crear</span>
+				<span *ngIf="mFormaEstado ==='3'"> Actualizar</span>
+			</button>
+		</div>
+	</form>
+</ng-template>
+

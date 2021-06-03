@@ -11,6 +11,7 @@ import {
   IEstados,
   ICotizaciones,Cotizaciones, IAgentes, IClientes
 } from 'src/app/services/interface.index';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cotizaciones',
@@ -36,6 +37,7 @@ export class CotizacionesComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private state: ObjectService,
+    private router: Router,
   ) { 
     this.mAgentes=[];
     this.mClientes=[];
@@ -87,11 +89,13 @@ export class CotizacionesComponent implements OnInit {
     this.mFormaEstado = '3';
   }
 
+  detalle(id:number){
+    this.router.navigate(['/detalle', id], { skipLocationChange: true });
+  }
 
   getXId(pkey:number) {
     this.loading = true;
     this.service.AllXId(pkey).then(data => {
-      console.log(data)
       this.mForma.setValue({
         Vencimiento: data[0].Vencimiento,
         TCAgenteId: data[0].TCAgenteId,
@@ -108,7 +112,6 @@ export class CotizacionesComponent implements OnInit {
   getAll() {
     this.loading = true;
     this.service.AllPage().then(data => {
-      console.log(data)
       this.mCotizaciones = data;
      this.loading = false;
     }).catch(error => {
