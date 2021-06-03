@@ -96,6 +96,7 @@ export class VehiculosComponent implements OnInit {
   getXId(pkey:number) {
     this.loading = true;
     this.service.AllXId(pkey).then(data => {
+      console.log(data)
       this.mForma.setValue({
          Modelo: data[0].Modelo,
          Precio: data[0].Precio,
@@ -129,7 +130,6 @@ export class VehiculosComponent implements OnInit {
     this.loading = true;
     this.serviceMarcas.AllPage().then(data => {
       this.mMarcas = data;
-      console.log(this.mMarcas)
      this.loading = false;
     }).catch(error => {
       this.toastr.error(error.message, "Marcas");
