@@ -1,6 +1,8 @@
 export interface ICotizaciones {
     id: number;
     TCAgenteId:number;
+    Agente:string;
+    Cliente:string;
     TCClienteId:number;
     Vencimiento:string;
     Estado:string;
@@ -12,6 +14,8 @@ export class Cotizaciones {
     static empy() {
       return {
           id: 0,
+          Agente: '',
+          Cliente:'',
           TCAgenteId: 0,
           TCClienteId: 0,
           Vencimiento: '',
