@@ -96,15 +96,14 @@ export class VehiculosComponent implements OnInit {
   getXId(pkey:number) {
     this.loading = true;
     this.service.AllXId(pkey).then(data => {
-      console.log(data)
       this.mForma.setValue({
          Modelo: data[0].Modelo,
          Precio: data[0].Precio,
          Color: data[0].Color,
          Tipo: data[0].Tipo,
          Traccion: data[0].Traccion,
-         TCMarcaId: data[0].Modelo,
-         TCConcesionarioId: data[0].Modelo,
+         TCMarcaId: data[0].TCMarcaId,
+         TCConcesionarioId: data[0].TCConcesionarioId,
         Estado: data[0].Estado
       });
       this.loading = false;

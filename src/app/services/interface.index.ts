@@ -8,7 +8,7 @@ export * from './concesionario/concesionario.inteface';
 export * from './cotizaciones/cotizaciones.interface';
 export * from './detallecotizaciones/detallecotizaciones.interface';
 export * from './marcas/marcas.interface';
-
+export * from './agentes/agentes.inteface';
 
 export * from './object/object.interface';
 

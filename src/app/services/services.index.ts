@@ -8,7 +8,7 @@ export { DetallecotizacionesService } from './detallecotizaciones/detallecotizac
 export { CotizacionesService } from './cotizaciones/cotizaciones.service';
 export { ConcesionarioService } from './concesionario/concesionario.service';
 export { ClientesService } from './clientes/clientes.service';
-
+export { AgentesService } from './agentes/agentes.service';
 
 
 export { ObjectService } from './object/object.service';
