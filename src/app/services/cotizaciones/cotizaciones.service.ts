@@ -20,12 +20,13 @@ export class CotizacionesService {
 
 
 
-  async AllPage() {
-    return await this.httpClient.get(this.mUrl + this.mService, {
+  async AllPage(Datos:any) {
+    console.log("dat",Datos)
+    const lDatos = JSON.stringify(Datos);
+    return await this.httpClient.post(this.mUrl + this.mService+'/todo', lDatos, {
       headers: getHeaders()
     }).pipe(
       map((data: any) => {
-
         return data;
       })).toPromise();
   }

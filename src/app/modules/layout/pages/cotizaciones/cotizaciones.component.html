@@ -1,3 +1,39 @@
+
+            <div class="card-header">
+    
+                    <form [formGroup]="mForma2" (ngSubmit)="onSubmit2()">
+                    <div class="row p-0">
+
+                        <div class="col">
+                            <div class="form-group col">
+                                <label for="FechaInicio">Inicio</label>
+                                <input class="form-control" type="date" formControlName="FechaInicio"
+                                    value="{{ post.startDate | date:'yyyy-MM-dd' }}">
+                            </div>
+                        </div>
+                        <div class="form-group col">
+                            <label for="FechaFin">Fin</label>
+                            <input class="form-control" type="date" formControlName="FechaFin"
+                                value="{{ post.endDate | date:'yyyy-MM-dd' }}">
+                        </div>
+
+                        <div class="col">
+                            <label>.</label>
+                            <button class="btn btn-outline-primary form-control" type="submit">
+                                <span> Buscar </span>
+                                <i style="margin-left: 5px;" class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+
+
+
+
+
 <button type="button" data-toggle="modal" (click)="nuevo(content)" class="btn btn-primary btn-lg">Crear</button>
 <div class="mt-5">
     <table class="table">

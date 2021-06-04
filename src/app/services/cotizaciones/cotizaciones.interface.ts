@@ -24,3 +24,9 @@ export class Cotizaciones {
       } as unknown as ICotizaciones;
     }
   }
+
+
+  export interface IRptFecha {
+    FechaFin: string;
+    FechaInicio: string;
+  }

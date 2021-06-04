@@ -9,9 +9,14 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import {
   IEstados,
-  ICotizaciones,Cotizaciones, IAgentes, IClientes
+  ICotizaciones,Cotizaciones, IAgentes, IClientes, IRptFecha
 } from 'src/app/services/interface.index';
 import { ActivatedRoute, Router } from '@angular/router';
+interface Post {
+  startDate: Date;
+  endDate: Date;
+}
+import { formatDate, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-cotizaciones',
@@ -19,16 +24,23 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./cotizaciones.component.scss']
 })
 export class CotizacionesComponent implements OnInit {
+  post: Post = {
+    startDate: new Date(Date.now()),
+    endDate: new Date(Date.now())
+  }
   mClientes:IClientes[];
   mAgentes:IAgentes[];
   mEstado: IEstados[];
   submitted = false;
+  submitted2 = false;
   mCotizaciones: ICotizaciones[];
   mForma: FormGroup;
+  mForma2: FormGroup;
   mCotizacionesSelect: ICotizaciones;
   mFormaEstado: string;
   public loading = false;
   Pkey: number;
+  mVentasFechaSelect: any;
   constructor(
     private modalService: NgbModal,
     private service: CotizacionesService,
@@ -42,17 +54,19 @@ export class CotizacionesComponent implements OnInit {
     this.mAgentes=[];
     this.mClientes=[];
     this.mForma = this.generarFormulario();
+    this.mForma2 = this.generarFormulario2();
     this.mCotizaciones=[];
     this.mCotizacionesSelect = Cotizaciones.empy();
     this.mFormaEstado = '4';
     this.mEstado = this.state.Estados();
     this.Pkey=0;
+    this.mVentasFechaSelect=[];
   }
 
   ngOnInit(): void {
-    this.getAll();
     this.getAllAgentes();
     this.getAllClientess();
+    this.onSubmit2();
   }
 
 
@@ -65,6 +79,15 @@ export class CotizacionesComponent implements OnInit {
       TCAgenteId: ['', Validators.required],
       TCClienteId: ['', Validators.required],
       Estado:  ['', Validators.required],
+    });
+  }
+
+ // get ff() { return this.mForma2.controls; }
+
+  generarFormulario2() {
+    return this.formBuilder.group({
+      FechaInicio: [formatDate(this.post.startDate, 'yyyy-MM-dd', 'en')],
+      FechaFin: [formatDate(this.post.endDate, 'yyyy-MM-dd', 'en')],
     });
   }
 
@@ -111,8 +134,9 @@ export class CotizacionesComponent implements OnInit {
 
   getAll() {
     this.loading = true;
-    this.service.AllPage().then(data => {
-      this.mCotizaciones = data;
+    this.service.AllPage(this.mVentasFechaSelect).then(data => {
+      console.log(data)
+    //  this.mCotizaciones = data;
      this.loading = false;
     }).catch(error => {
       this.toastr.error(error.message, "Cotizaciones");
@@ -156,6 +180,17 @@ export class CotizacionesComponent implements OnInit {
       } else if (this.mFormaEstado === '3') {
         this.actualizar(this.Pkey);
       }
+    }
+  }
+
+
+  onSubmit2() {
+    this.submitted = true;
+    if (this.mForma2.invalid) {
+      return;
+    } else {
+      this.mVentasFechaSelect = this.mForma2.value as IRptFecha;
+        this.getAll();
     }
   }
 
