@@ -11,7 +11,7 @@ import {
   IEstados,
   ICotizaciones,Cotizaciones, IAgentes, IClientes, IRptFecha
 } from 'src/app/services/interface.index';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 interface Post {
   startDate: Date;
   endDate: Date;
@@ -136,7 +136,7 @@ export class CotizacionesComponent implements OnInit {
     this.loading = true;
     this.service.AllPage(this.mVentasFechaSelect).then(data => {
       console.log(data)
-    //  this.mCotizaciones = data;
+     this.mCotizaciones = data;
      this.loading = false;
     }).catch(error => {
       this.toastr.error(error.message, "Cotizaciones");
