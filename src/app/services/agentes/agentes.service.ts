@@ -12,7 +12,7 @@ export class AgentesService {
 
   private mService = 'agentes';
 
-  private mUrl = 'http://localhost:3000/';
+  private mUrl = 'http://3.128.135.7:3000/';
   constructor(
     private httpClient: HttpClient,
 
