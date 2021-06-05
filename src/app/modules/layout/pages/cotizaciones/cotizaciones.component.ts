@@ -200,7 +200,7 @@ export class CotizacionesComponent implements OnInit {
     this.service.New(this.mCotizacionesSelect).then(data => {
       this.toastr.success(data.message, "Cotizaciones");
       this.mFormaEstado = '4';
-      this.mCotizaciones.unshift(data);
+      this.getAll();
       this.loading = false;
    //   this.modalRef.close();
    this.getDismissReason('');
@@ -215,14 +215,7 @@ export class CotizacionesComponent implements OnInit {
     this.service.Update(this.mCotizacionesSelect, pKey).then(data => {
       this.toastr.success(data.message, "Cotizaciones");
       this.getDismissReason('');
-      this.mCotizaciones = this.mCotizaciones.map((object: ICotizaciones) => {
-        if (object.id === pKey) {
-          return object = data;
-        } else {
-          return object;
-        }
-      });
-
+      this.getAll();
       this.loading = false;
     }).catch(error => {
       this.loading = false;

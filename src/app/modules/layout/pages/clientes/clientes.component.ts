@@ -153,7 +153,7 @@ export class ClientesComponent implements OnInit {
     this.service.New(this.mClientesSelect).then(data => {
       this.toastr.success(data.message, "Clientes");
       this.mFormaEstado = '4';
-      this.mClientes.unshift(data);
+  this.getAll();
       this.loading = false;
    //   this.modalRef.close();
    this.getDismissReason('');
@@ -168,14 +168,7 @@ export class ClientesComponent implements OnInit {
     this.service.Update(this.mClientesSelect, pKey).then(data => {
       this.toastr.success(data.message, "Clientes");
       this.getDismissReason('');
-      this.mClientes = this.mClientes.map((object: IClientes) => {
-        if (object.id === pKey) {
-          return object = data;
-        } else {
-          return object;
-        }
-      });
-
+      this.getAll();
       this.loading = false;
     }).catch(error => {
       this.loading = false;
@@ -188,7 +181,7 @@ export class ClientesComponent implements OnInit {
     this.loading = true;
     this.service.Delete(pKey).then(data => {
       this.toastr.success(data.message, "Clientes");
-        this.mClientes = this.mClientes.filter((object: IClientes) => object.id !== pKey);
+      this.getAll();
       this.loading = false;
     }).catch(error => {
       this.loading = false;

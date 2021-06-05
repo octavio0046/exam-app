@@ -124,7 +124,7 @@ export class DepartamentosComponent implements OnInit {
     this.service.New(this.mDepartamentosSelect).then(data => {
       this.toastr.success(data.message, " Departamentos");
       this.mFormaEstado = '4';
-      this.mDepartamentos.unshift(data);
+      this.getAll();
       this.loading = false;
    //   this.modalRef.close();
    this.getDismissReason('');
@@ -138,15 +138,7 @@ export class DepartamentosComponent implements OnInit {
     this.loading = true;
     this.service.Update(this.mDepartamentosSelect, pKey).then(data => {
       this.toastr.success(data.message, " Departamentos");
-      this.getDismissReason('');
-      this.mDepartamentos = this.mDepartamentos.map((object: IDepartamentos) => {
-        if (object.id === pKey) {
-          return object = data;
-        } else {
-          return object;
-        }
-      });
-
+      this.getAll();
       this.loading = false;
     }).catch((error: { message: string | undefined; }) => {
       this.loading = false;
@@ -159,7 +151,7 @@ export class DepartamentosComponent implements OnInit {
     this.loading = true;
     this.service.Delete(pKey).then(data => {
       this.toastr.success(data.message, " Departamentos");
-        this.mDepartamentos = this.mDepartamentos.filter((object: IDepartamentos) => object.id !== pKey);
+      this.getAll();
       this.loading = false;
     }).catch(error => {
       this.loading = false;

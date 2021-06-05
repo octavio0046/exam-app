@@ -143,7 +143,7 @@ export class MunicipiosComponent implements OnInit {
     this.service.New(this.mMunicipiosSelect).then(data => {
       this.toastr.success(data.message, "Municipios");
       this.mFormaEstado = '4';
-      this.mMunicipios.unshift(data);
+      this.getAll();
       this.loading = false;
    //   this.modalRef.close();
    this.getDismissReason('');
@@ -178,7 +178,7 @@ export class MunicipiosComponent implements OnInit {
     this.loading = true;
     this.service.Delete(pKey).then(data => {
       this.toastr.success(data.message, "Municipios");
-        this.mMunicipios = this.mMunicipios.filter((object: IMunicipios) => object.id !== pKey);
+      this.getAll();
       this.loading = false;
     }).catch(error => {
       this.loading = false;

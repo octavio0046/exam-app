@@ -169,7 +169,7 @@ export class VehiculosComponent implements OnInit {
     this.service.New(this.mVehiculosSelect).then(data => {
       this.toastr.success(data.message, "Vehiculos");
       this.mFormaEstado = '4';
-      this.mVehiculos.unshift(data);
+      this.getAll();
       this.loading = false;
    //   this.modalRef.close();
    this.getDismissReason('');
@@ -184,14 +184,7 @@ export class VehiculosComponent implements OnInit {
     this.service.Update(this.mVehiculosSelect, pKey).then(data => {
       this.toastr.success(data.message, "Vehiculos");
       this.getDismissReason('');
-      this.mVehiculos = this.mVehiculos.map((object: IVehiculos) => {
-        if (object.id === pKey) {
-          return object = data;
-        } else {
-          return object;
-        }
-      });
-
+      this.getAll();
       this.loading = false;
     }).catch(error => {
       this.loading = false;
@@ -204,7 +197,7 @@ export class VehiculosComponent implements OnInit {
     this.loading = true;
     this.service.Delete(pKey).then(data => {
       this.toastr.success(data.message, "Vehiculos");
-        this.mVehiculos = this.mVehiculos.filter((object: IVehiculos) => object.id !== pKey);
+      this.getAll();
       this.loading = false;
     }).catch(error => {
       this.loading = false;

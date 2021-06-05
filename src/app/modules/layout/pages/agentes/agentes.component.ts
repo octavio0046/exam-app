@@ -149,7 +149,7 @@ export class AgentesComponent implements OnInit {
     this.service.New(this.mAgentesSelect).then(data => {
       this.toastr.success(data.message, "Agentes");
       this.mFormaEstado = '4';
-      this.mAgentes.unshift(data);
+       this.getAll();
       this.loading = false;
    //   this.modalRef.close();
    this.getDismissReason('');
@@ -171,6 +171,13 @@ export class AgentesComponent implements OnInit {
           return object;
         }
       });
+      // this.mAgentes = this.mAgentes.map((object: IAgentes) => {
+      //   if (object.id === pKey) {
+      //     return object = data;
+      //   } else {
+      //     return object;
+      //   }
+      // });
 
       this.loading = false;
     }).catch(error => {

@@ -124,7 +124,7 @@ export class MarcasComponent implements OnInit {
     this.service.New(this.mMarcasSelect).then(data => {
       this.toastr.success(data.message, "Marcas");
       this.mFormaEstado = '4';
-      this.mMarcas.unshift(data);
+      this.getAll();
       this.loading = false;
    //   this.modalRef.close();
    this.getDismissReason('');
@@ -139,14 +139,7 @@ export class MarcasComponent implements OnInit {
     this.service.Update(this.mMarcasSelect, pKey).then(data => {
       this.toastr.success(data.message, "Marcas");
       this.getDismissReason('');
-      this.mMarcas = this.mMarcas.map((object: IMarcas) => {
-        if (object.id === pKey) {
-          return object = data;
-        } else {
-          return object;
-        }
-      });
-
+      this.getAll();
       this.loading = false;
     }).catch(error => {
       this.loading = false;
@@ -159,7 +152,7 @@ export class MarcasComponent implements OnInit {
     this.loading = true;
     this.service.Delete(pKey).then(data => {
       this.toastr.success(data.message, "Marcas");
-        this.mMarcas = this.mMarcas.filter((object: IMarcas) => object.id !== pKey);
+      this.getAll();
       this.loading = false;
     }).catch(error => {
       this.loading = false;

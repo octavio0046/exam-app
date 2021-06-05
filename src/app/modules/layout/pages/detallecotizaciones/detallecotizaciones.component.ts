@@ -118,7 +118,7 @@ export class DetallecotizacionesComponent implements OnInit {
   guardar() {
     this.loading = true;
     this.mDetallesSelect.TCCotizacionId = this.id;
-    this.serviceDetalle.New(this.mDetallesSelect).then(data => {
+    this.serviceDetalle.New(this.mDetallesSelect).then(data => {     
       this.toastr.success(data.message, "Detalles");
       this.mFormaEstado = '4';
       this.getDetallesXId();

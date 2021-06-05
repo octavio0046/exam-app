@@ -145,7 +145,7 @@ export class ConcesionarioComponent implements OnInit {
     this.service.New(this.mConcesionarioSelect).then(data => {
       this.toastr.success(data.message, "Concesionario");
       this.mFormaEstado = '4';
-      this.mConcesionario.unshift(data);
+      this.getAll();
       this.loading = false;
    //   this.modalRef.close();
    this.getDismissReason('');
@@ -160,14 +160,7 @@ export class ConcesionarioComponent implements OnInit {
     this.service.Update(this.mConcesionarioSelect, pKey).then(data => {
       this.toastr.success(data.message, "Concesionario");
       this.getDismissReason('');
-      this.mConcesionario = this.mConcesionario.map((object: IConcesionario) => {
-        if (object.id === pKey) {
-          return object = data;
-        } else {
-          return object;
-        }
-      });
-
+      this.getAll();
       this.loading = false;
     }).catch(error => {
       this.loading = false;
