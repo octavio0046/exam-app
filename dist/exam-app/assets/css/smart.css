@@ -1,0 +1,461 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.fondo-body {
+    background-color: hsl(0, 0%, 100%);
+}
+
+
+/* Paleta de colores usados en landing Page Smart Devs */
+
+:root {
+    /* Background Smart Devs */
+    --bg-smart-one: hsl(202, 83%, 45%);
+    --bg-smart-two: hsl(0, 0%, 100%);
+    --bg-smart-three: hsl(0, 0%, 95%);
+    --bg-smart-four: hsl(235, 49%, 14%);
+    --bg-smart-five: hsl(240, 2%, 80%);
+    --Background-Linear-One: hsl(205, 87%, 17%);
+    --Background-Linear-Two: hsl(205, 87%, 35%);
+    --bg-body: hsl(235, 49%, 14%);
+    --shadown-contenedor-smart: hsla(0, 0%, 0%, 0.3);
+    /* --- */
+    /* Colores Smart Devs */
+    --color-smart-one: hsl(235, 49%, 14%);
+    --color-smart-two: hsl(0, 0%, 100%);
+    --color-smart-three: hsl(240, 2%, 67%);
+    --color-smart-four: hsl(201, 92%, 60%);
+    --color-smart-five: hsl(201, 88%, 83%);
+    --color-smart-six: hsl(202, 83%, 45%);
+    /* --- */
+    --Background-social-media: hsl(190, 14%, 92%);
+    --color-title-technology-item: hsl(210, 13%, 31%);
+    --color-paragraph-technology: hsl(192, 2%, 59%);
+    --color-contact-title: hsl(207, 24%, 15%);
+    --color-contact-title-description: hsl(207, 24%, 15%);
+    --color-footer-email: hsl(0, 0%, 70%);
+}
+
+
+/* Fuentes usadas en landing Page Smart Devs */
+
+@font-face {
+    src: url('../css/font/Gotham-Bold.ttf') format('truetype');
+    font-family: Gotham-Bold;
+}
+
+@font-face {
+    src: url('../css/font/Gotham-Medium.ttf')format('truetype');
+    font-family: Gotham-Medium;
+}
+
+@font-face {
+    src: url('../css/font/Gotham-Light.ttf')format('truetype');
+    font-family: Gotham-Light;
+}
+@font-face {
+    src: url('../css/font/OpenSans-Regular.ttf')format('truetype');
+    font-family: OpenSans-Regular;
+}
+
+
+@font-face {
+    src: url('../css/font/OpenSans-Bold.ttf')format('truetype');
+    font-family: OpenSans-Bold;
+}
+
+@font-face {
+    src: url('../css/font/OpenSans-Semibold.ttf')format('truetype');
+    font-family: OpenSans-SemiBold;
+}
+
+
+/* Fin de seccion colores y fuentes */
+
+
+/* Smart Devs */
+
+
+/* Comienzo de la seccion header */
+
+
+/* menu */
+
+.menu {
+    background-color: var(--bg-smart-one);
+    height: 70px;
+}
+
+.menu-link {
+    margin-left: 1em;
+    font-family: OpenSans-Bold;
+    font-size: .9rem;
+}
+
+
+/* TODO revisar */
+
+.active-smart {
+    color: var(--color-smart-one) !important;
+}
+
+
+/* fin menu */
+
+
+/* Smart Devs */
+
+
+/* Comienzo de la seccion header */
+
+.fondo-header-container {
+    background-color: var(--bg-smart-two);
+}
+
+.titulo-header-smart {
+    color: var(--color-smart-one);
+    font-family: Gotham-Bold;
+    font-size: 3.5rem;
+}
+
+.subtitulo-header-smart {
+    color: var(--color-smart-one);
+    font-family: Gotham-Medium;
+    font-size: 1.5rem;
+}
+
+.parrafo-header-smart {
+    font-family: OpenSans-Regular;
+    color: var(--color-smart-three);
+}
+
+.enlaces-header-smart {
+    font-family: OpenSans-SemiBold;
+    font-size: .9rem;
+    color: var(--color-smart-two);
+    text-decoration: none;
+}
+
+.enlaces-header-smart:hover {
+    color: var(--color-smart-two);
+}
+
+.contenedor-enlaces-smart {
+    width: 200px;
+    height: 45px;
+    background-color: var(--bg-smart-one);
+}
+
+
+/* Fin de la seccion header */
+
+
+/* Smart Devs */
+
+
+/* Comienzo de la seccion Quienes somos */
+
+.fondo-about-container {
+    background-image: linear-gradient(to top right, var(--Background-Linear-One), var(--Background-Linear-Two));
+}
+
+.titulo-about-smart {
+    font-size: 1.2rem;
+    font-family: OpenSans-SemiBold;
+    color: var(--color-smart-four);
+}
+
+.subtitulo-about-smart {
+    font-size: 2.4rem;
+    font-family: Gotham-Bold;
+    color: var(--color-smart-two);
+}
+
+.titulo-about-resaltar {
+    color: var(--color-smart-two);
+}
+
+.parrafo-about-smart {
+    font-family: OpenSans-Regular;
+    color: var(--color-smart-five);
+}
+
+.enlaces-about-smart {
+    font-family: OpenSans-SemiBold;
+    font-size: .9rem;
+    background-color: var(--bg-smart-two);
+    padding: 1em;
+    color: var(--color-smart-six);
+    text-decoration: none;
+}
+
+.enlaces-about-smart:hover {
+    color: var(--color-smart-six);
+}
+
+
+/* Fin de la seccion Quienes somos */
+
+
+/* Smart Devs */
+
+
+/* Comienzo de de la seccion especialidades */
+
+.titulo-specialty-smart {
+    text-align: center;
+    font-family: Gotham-Bold;
+    font-size: 1rem;
+    margin: 4em 0 3em;
+    color: var(--color-smart-one);
+}
+
+.subtitulo-specialty-smart {
+    margin-top: 1em;
+    text-align: center;
+    font-size: 1rem;
+    font-family: Gotham-Bold;
+    color: var(--color-title-technology-item);
+}
+
+.parrafo-specialty-smart {
+    text-align: center;
+    line-height: 2em;
+    font-size: .8rem;
+    margin: 10px;
+    color: var(--color-paragraph-technology);
+    margin-bottom: 4em;
+    font-family: OpenSans-SemiBold;
+}
+
+
+/* Fin de de la seccion especialidades */
+
+
+/* Smart Devs */
+
+
+/* Comienzo de la seccion tecnologias */
+
+.fondo-technology-container {
+    background-image: linear-gradient(to top right, var(--Background-Linear-Two), var(--Background-Linear-One));
+}
+
+.titulo-technology-smart {
+    text-align: center;
+    font-family: Gotham-Bold;
+    font-size: 1rem;
+    color: var(--color-smart-two);
+}
+
+
+/* Fin de la seccion tecnologias */
+
+
+/* Smart Devs */
+
+
+/* Comienzo de la seccion contacto */
+
+.titulo-contact-smart {
+    color: var(--color-smart-one);
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 1.5em 0;
+    font-family: Gotham-Bold;
+}
+
+.subtitulo-contact-smart {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 3em;
+    font-family: Gotham-Medium;
+    color: var(--color-smart-one);
+}
+
+.input-contact {
+    display: block;
+    height: 50px;
+    margin-bottom: 2em;
+    outline: none;
+    padding-left: 1em;
+    border-radius: 0;
+    font-family: Gotham-Light;
+}
+
+.contact-textarea {
+    outline: none;
+    padding-left: 1em;
+    padding-top: 1em;
+    border-radius: 0;
+    font-family: Gotham-Light;
+}
+
+.contact-terms {
+    font-size: .8rem;
+    line-height: 1.5;
+    font-family: OpenSans-SemiBold;
+}
+
+.contact-send {
+    padding: 1em;
+    background-color: var(--bg-smart-one);
+    color: var(--color-smart-two);
+    font-size: 1em;
+    border: 0;
+    margin-bottom: 4em;
+    font-family: OpenSans-SemiBold;
+    cursor: pointer;
+}
+
+
+/* Smart Devs */
+
+
+/* Fin  de la seccion contacto */
+
+
+/* Smart Devs */
+
+
+/* Comienzo de la seccion footer*/
+
+.title-footer-smart {
+    margin: 0;
+    font-size: 1.5rem;
+    font-family: Gotham-Bold;
+}
+
+.subtitulo-footer-smart,
+.copyright-footer-smart {
+    line-height: 2;
+    font-size: .8rem;
+    font-family: Opensans-SemiBold;
+}
+
+.contact-footer-send {
+    background-color: var(--bg-smart-one);
+    color: var(--color-smart-two);
+    font-family: Opensans-SemiBold;
+    border-radius: 0;
+    border: var(--bg-smart-one);
+}
+
+.social-footer-media {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--Background-social-media);
+}
+
+.footer-icon {
+    width: 20px;
+}
+
+
+/* Fin de la seccion footer*/
+
+
+/* Smart Devs */
+
+.contenedor-alto-smart {
+    background-color: var(--bg-smart-one);
+}
+
+.navbar-toggler {
+    border: 0;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.icono-user::before,
+.icono-carrito::before,
+.icono-movil::before,
+
+
+
+
+.icono-carrito .contenedor-carrito-smart {
+    background-color: var(--bg-smart-two);
+    box-shadow: 0 0 10px var(--shadown-contenedor-smart);
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 300px;
+    padding: 1em;
+}
+
+.titulo-carrito-smart,
+.subtitulo-carrito-smart {
+    font-family: Opensans-Bold;
+    font-size: 2rem;
+    font-style: normal;
+    text-decoration: none;
+    color: var(--color-smart-four);
+}
+
+.subtitulo-carrito-smart {
+    margin: 1em 0 0 0;
+    font-size: 1rem;
+    color: var(--color-smart-one);
+}
+
+
+
+.contenedor-principal-smart::-webkit-scrollbar {
+    width: 8px;
+}
+
+.contenedor-principal-smart::-webkit-scrollbar-thumb {
+    background-color: var(--bg-smart-five);
+    border-radius: 50px;
+}
+
+.contenedor-principal-smart::-webkit-scrollbar-thumb:hover {
+    background-color: var(--bg-smart-one);
+}
+
+.contenedor-principal-smart::-webkit-scrollbar-track {
+    background-color: var(--bg-smart-three);
+    border-radius: 50px;
+}
+
+.contenedor-principal-smart::-webkit-scrollbar-track:hover,
+.contenedor-principal-smart::-webkit-scrollbar-track:active {
+    background-color: hsl(0, 0%, 95%);
+}
+
+@media (min-width: 992px) {
+    .contenedor-buscador-smart {
+        margin-right: 14em;
+        /* top: 15px; */
+    }
+    .icono-user::before {
+        margin-right: 10px;
+        top: 15px;
+    }
+    .icono-carrito::before {
+        margin-right: 35px;
+        top: 15px;
+    }
+    .icono-movil::before {
+        margin-right: 60px;
+        top: 15px;
+    }
+    .icono-correo::before {
+        margin-right: 85px;
+        top: 15px;
+    }
+    .subtitulo-header-smart {
+        color: var(--color-smart-one);
+        font-family: Gotham-Medium;
+        font-size: 2.2rem;
+    }
+}
